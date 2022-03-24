@@ -3,6 +3,7 @@ package com.TestSuite;
 import static io.restassured.RestAssured.given;
 
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
 import org.hamcrest.Matchers;
 import org.json.JSONArray;
@@ -10,9 +11,15 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.XML;
 
+import PojoClass.Datum;
+import PojoClass.PojoExtractor;
+
 import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import io.restassured.http.ContentType;
+import io.restassured.mapper.ObjectMapper;
+import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
+import junit.framework.Test;
 
 
 public class HttpMethod {
@@ -95,38 +102,55 @@ public class HttpMethod {
 		
 		Response Res = given().contentType(ContentType.JSON).when().get(URI_Key);
 		
-		//System.out.println("***************GET Response********************");
-		
-		//System.out.println(Res.asPrettyString());
-		
-		//System.out.println("***************GET Status Code*****************");
-		
-		//System.out.println(Res.statusCode());
-		
 		//Scehma Validations 
 		
 		Res.then().assertThat().body(matchesJsonSchema(ExpectedJSONSchema));
 		
-		//Json Parsing using JSONPath - For single record 
+		//Response Extractor using Pojo Class
 		
-		//String email_SecondRecord = Res.jsonPath().getString("data[2].email");
+		PojoExtractor PE = Res.as(PojoExtractor.class,ObjectMapperType.GSON);
 		
-		//System.out.println(email_SecondRecord);
+		int page = PE.getPage();
+		int total = PE.getTotal();
 		
-		//Json Parsing using org.json
+		//System.out.println("Page" + "  " + page);
+		//System.out.println("total" + "  " + total);
+		
+		List<Datum> Datum_Data = PE.getData();
+		
+		for(Datum data : Datum_Data) {
+			
+			String EmailID = data.getEmail();
+		//System.out.println("Email Extracted" + "   " + EmailID);
+		}
+		
+		
+		// Response Extractor using JSON_Path 
+		
+		String FirstName = Res.jsonPath().getString("data[0].first_name").toString();
+		
+		System.out.println("FirstName" + "   " + FirstName);
+		
+		// Response Extractor using org.json
 		
 		JSONTokener JT = new JSONTokener(Res.asPrettyString());
 		
-		JSONObject Obj = new JSONObject(JT);
+		JSONObject OuterObj = new JSONObject(JT);
 		
-	JSONArray JA = Obj.getJSONArray("data");
+		JSONArray array = OuterObj.getJSONArray("data");
 		
-		for(int i =0;i<JA.length();i++) {
-			String FirstName = JA.getJSONObject(i).getString("first_name").toString();
-			System.out.println("FirstName Extracted is " +  "  " + FirstName);
+		for(int i =0;i<array.length();i++) {
+		
+		JSONObject Objt = array.getJSONObject(i);
+		
+		String First_Name = Objt.getString("first_name").toString();
+		
+		System.out.println("FirstName ::" +  "   " + First_Name);
+		
 		}
 		
-				
+		
+		
 		return Res;
 	}
 	

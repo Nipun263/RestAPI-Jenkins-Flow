@@ -16,7 +16,7 @@ public class TestCase {
 
 	
 	
-	@Test(priority=-1)
+	//@Test(priority=-1)
 	public void TestCase_Generate_Token() throws IOException {
 
 		Properties PRP = PropertyFileReader.ReadPropertyFile();
@@ -28,7 +28,7 @@ public class TestCase {
 		
 	}
 
-	@Test(priority =-99)
+	//@Test(priority =-99)
 	public void TestCase_Unlock() throws IOException {
 		
 		Properties PRP = PropertyFileReader.ReadPropertyFile();
@@ -42,7 +42,7 @@ public class TestCase {
 	
 	
 
-	@Test(priority = 1)
+	//@Test(priority = 1)
 	public void TestCase_PostRequest() throws IOException {
 
 		Properties PRP = PropertyFileReader.ReadPropertyFile();
@@ -68,14 +68,14 @@ public class TestCase {
 		
 		String ExpectedJSONSchema = JSONReader.ReadJSONFile("Post_ReqRes_Schema.JSON" , "Schema\\");
 				
-		Response Res = HTM.GetRequest("ReqRes", "users",ExpectedJSONSchema);
+		Response Res = HTM.GetRequest("ReqRes1", "users",ExpectedJSONSchema);
 		
 		ResponseValidate.validateStatusCode(Res,200);
 		
 		
 	}
 
-	@Test(priority = 3)
+	//@Test(priority = 3)
 	public void TestCase_PutRequest() throws IOException {
 
 		Properties PRP = PropertyFileReader.ReadPropertyFile();
@@ -92,7 +92,7 @@ public class TestCase {
 
 	}
 
-	@Test(priority = 4)
+	//@Test(priority = 4)
 	public void TestCase_DeleteRequest() throws IOException {
 
 		Properties PRP = PropertyFileReader.ReadPropertyFile();

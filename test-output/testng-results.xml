@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8229" started-at="2022-03-21T09:24:16Z" finished-at="2022-03-21T09:24:24Z">
+  <suite started-at="2022-03-23T11:34:03Z" name="Default suite" finished-at="2022-03-23T11:34:05Z" duration-ms="2210">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8229" started-at="2022-03-21T09:24:16Z" finished-at="2022-03-21T09:24:24Z">
+    <test started-at="2022-03-23T11:34:03Z" name="Default test" finished-at="2022-03-23T11:34:05Z" duration-ms="2210">
       <class name="com.TestCases.TestCase">
-        <test-method status="PASS" signature="TestCase_Unlock()[pri:-99, instance:com.TestCases.TestCase@399f45b1]" name="TestCase_Unlock" duration-ms="3286" started-at="2022-03-21T09:24:16Z" finished-at="2022-03-21T09:24:19Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestCase_Unlock -->
-        <test-method status="PASS" signature="TestCase_Generate_Token()[pri:-1, instance:com.TestCases.TestCase@399f45b1]" name="TestCase_Generate_Token" duration-ms="2191" started-at="2022-03-21T09:24:19Z" finished-at="2022-03-21T09:24:21Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestCase_Generate_Token -->
-        <test-method status="PASS" signature="TestCase_PostRequest()[pri:1, instance:com.TestCases.TestCase@399f45b1]" name="TestCase_PostRequest" duration-ms="804" started-at="2022-03-21T09:24:21Z" finished-at="2022-03-21T09:24:22Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestCase_PostRequest -->
-        <test-method status="PASS" signature="TestCase_GETRequest()[pri:2, instance:com.TestCases.TestCase@399f45b1]" name="TestCase_GETRequest" duration-ms="940" started-at="2022-03-21T09:24:22Z" finished-at="2022-03-21T09:24:23Z">
+        <test-method signature="TestCase_GETRequest()[pri:2, instance:com.TestCases.TestCase@3ad2e17]" started-at="2022-03-23T11:34:03Z" name="TestCase_GETRequest" finished-at="2022-03-23T11:34:05Z" duration-ms="2195" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- TestCase_GETRequest -->
-        <test-method status="PASS" signature="TestCase_PutRequest()[pri:3, instance:com.TestCases.TestCase@399f45b1]" name="TestCase_PutRequest" duration-ms="810" started-at="2022-03-21T09:24:23Z" finished-at="2022-03-21T09:24:24Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestCase_PutRequest -->
-        <test-method status="PASS" signature="TestCase_DeleteRequest()[pri:4, instance:com.TestCases.TestCase@399f45b1]" name="TestCase_DeleteRequest" duration-ms="162" started-at="2022-03-21T09:24:24Z" finished-at="2022-03-21T09:24:24Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- TestCase_DeleteRequest -->
       </class> <!-- com.TestCases.TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
