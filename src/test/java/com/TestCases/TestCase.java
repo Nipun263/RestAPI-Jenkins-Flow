@@ -28,7 +28,7 @@ public class TestCase {
 		
 	}
 
-	//@Test(priority =-99)
+	@Test(priority =-99)
 	public void TestCase_Unlock() throws IOException {
 		
 		Properties PRP = PropertyFileReader.ReadPropertyFile();

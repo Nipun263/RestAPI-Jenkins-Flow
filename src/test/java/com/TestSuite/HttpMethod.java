@@ -1,25 +1,23 @@
 package com.TestSuite;
 
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
 
 import java.io.File;
 import java.util.List;
 import java.util.Properties;
-import org.hamcrest.Matchers;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
-import org.json.XML;
 
-import PojoClass.Datum;
-import PojoClass.PojoExtractor;
+import com.POJOClass.Datum;
+import com.POJOClass.Example;
 
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import io.restassured.http.ContentType;
-import io.restassured.mapper.ObjectMapper;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
-import junit.framework.Test;
+
 
 
 public class HttpMethod {
@@ -69,6 +67,7 @@ public class HttpMethod {
 		//System.out.println(Res.asPrettyString());
 		
 		//System.out.println(Res.statusCode());
+	
 		
 		String message = Res.jsonPath().getString("message");
 		
@@ -102,57 +101,47 @@ public class HttpMethod {
 		
 		Response Res = given().contentType(ContentType.JSON).when().get(URI_Key);
 		
-		//Scehma Validations 
+		System.out.println(Res.asPrettyString());
 		
-		Res.then().assertThat().body(matchesJsonSchema(ExpectedJSONSchema));
+		//JSON Parsing using JSONPath 
 		
-		//Response Extractor using Pojo Class
+		String Total_Pages = Res.jsonPath().getString("total_pages").toString();
 		
-		PojoExtractor PE = Res.as(PojoExtractor.class,ObjectMapperType.GSON);
+		String per_page = Res.jsonPath().getString("per_page").toString();
 		
-		int page = PE.getPage();
-		int total = PE.getTotal();
+		String first_name = Res.jsonPath().getString("data[0].first_name").toString();
 		
-		//System.out.println("Page" + "  " + page);
-		//System.out.println("total" + "  " + total);
-		
-		List<Datum> Datum_Data = PE.getData();
-		
-		for(Datum data : Datum_Data) {
-			
-			String EmailID = data.getEmail();
-		//System.out.println("Email Extracted" + "   " + EmailID);
-		}
-		
-		
-		// Response Extractor using JSON_Path 
-		
-		String FirstName = Res.jsonPath().getString("data[0].first_name").toString();
-		
-		System.out.println("FirstName" + "   " + FirstName);
-		
-		// Response Extractor using org.json
+		//JSON Parsing using Org.JSON
 		
 		JSONTokener JT = new JSONTokener(Res.asPrettyString());
 		
-		JSONObject OuterObj = new JSONObject(JT);
+		JSONObject Obj = new JSONObject(JT);
 		
-		JSONArray array = OuterObj.getJSONArray("data");
+		JSONArray array = Obj.getJSONArray("data");
 		
 		for(int i =0;i<array.length();i++) {
+			
+			String email = array.getJSONObject(i).getString("email").toString();
+			
+			//System.out.println(email);
+		}
 		
-		JSONObject Objt = array.getJSONObject(i);
+		//JSON Parsing using Pojo Class 
 		
-		String First_Name = Objt.getString("first_name").toString();
+		Example EE = Res.as(Example.class, ObjectMapperType.GSON);
 		
-		System.out.println("FirstName ::" +  "   " + First_Name);
+		List<Datum> DD =  EE.getData();
 		
+		for(Datum DF : DD) {
+			String AA = DF.getEmail();
 		}
 		
 		
-		
 		return Res;
+		
 	}
+	
+	
 	
 	
 	public Response PutRequest(String BodyData , String URI , String PathParm) {
@@ -167,7 +156,6 @@ public class HttpMethod {
 		System.out.println("***************Put Status Code*****************");
 		
 		System.out.println(Res.statusCode());
-		
 				
 		return Res;
 	}

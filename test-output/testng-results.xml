@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-23T11:34:03Z" name="Default suite" finished-at="2022-03-23T11:34:05Z" duration-ms="2210">
+  <suite name="Default suite" duration-ms="4028" started-at="2022-04-25T12:57:20Z" finished-at="2022-04-25T12:57:24Z">
     <groups>
     </groups>
-    <test started-at="2022-03-23T11:34:03Z" name="Default test" finished-at="2022-03-23T11:34:05Z" duration-ms="2210">
+    <test name="Default test" duration-ms="4028" started-at="2022-04-25T12:57:20Z" finished-at="2022-04-25T12:57:24Z">
       <class name="com.TestCases.TestCase">
-        <test-method signature="TestCase_GETRequest()[pri:2, instance:com.TestCases.TestCase@3ad2e17]" started-at="2022-03-23T11:34:03Z" name="TestCase_GETRequest" finished-at="2022-03-23T11:34:05Z" duration-ms="2195" status="PASS">
+        <test-method status="PASS" signature="TestCase_Unlock()[pri:-99, instance:com.TestCases.TestCase@3febb011]" name="TestCase_Unlock" duration-ms="3984" started-at="2022-04-25T12:57:20Z" finished-at="2022-04-25T12:57:24Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- TestCase_GETRequest -->
+        </test-method> <!-- TestCase_Unlock -->
       </class> <!-- com.TestCases.TestCase -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
